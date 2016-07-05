@@ -39,44 +39,47 @@
 					
 					for(var i=0; i<bmpList.length; i++){
 						
-						if(evt.target.x + evt.target.getBounds().width + 50 == bmpList[i].x || evt.target.x + evt.target.getBounds().width - 50 == bmpList[i].x){
-							console.log(bmpList[i].x);
+						if((evt.target.x + evt.target.getBounds().width + 20 < bmpList[i].x && evt.target.x + evt.target.getBounds().width + 50 > bmpList[i].x) || (evt.target.x - 20 > bmpList[i].x + bmpList[i].image.width && evt.target.x - 50 < bmpList[i].x + bmpList[i].image.width)){
 							
-							if(evt.target.x > bmpList[i].x){
+							
+							if(evt.target.x > bmpList[i].x + bmpList[i].image.width){
 								if(bmpList[i].x < 20){
-									bmpList[i].x = evt.target.x + evt.target.getBounds().width + 50;
+									bmpList[i].x = evt.target.x + evt.target.getBounds().width + Math.random()*50;
 								}else{
-									bmpList[i].x -= 20;
+									bmpList[i].x -= Math.random()*20;
 								}
 								
 								
-							}else if(evt.target.x < bmpList[i].x){
+							}else if(evt.target.x + evt.target.getBounds().width < bmpList[i].x){
 								
 								if(bmpList[i].x > canvas.width - 20){
-									bmpList[i].x = evt.target.x - 50;
+									bmpList[i].x = evt.target.x - Math.random()*50;
 								}else{
-									bmpList[i].x += 20;
+									bmpList[i].x += Math.random()*20;
 								}
 							}
 							
-						}else if(evt.target.y + evt.target.getBounds().height + 50 == bmpList[i].y || evt.target.y + evt.target.getBounds().height - 50 == bmpList[i].y){
-							if(evt.target.y > bmpList[i].y){
+						}else if((evt.target.y + evt.target.getBounds().height + 20 < bmpList[i].y && evt.target.y + evt.target.getBounds().height + 50 > bmpList[i].y) || (evt.target.y - 20 > bmpList[i].y + bmpList[i].image.height && evt.target.y - 50 < bmpList[i].y + bmpList[i].image.height)){
+							if(evt.target.y > bmpList[i].y + bmpList[i].image.height){
 								if(bmpList[i].y < 20){
-									bmpList[i].y = evt.target.y + evt.target.getBounds().height + 50;
+									bmpList[i].y = evt.target.y + evt.target.getBounds().height + Math.random()*50;
 								}else{
-									bmpList[i].y -= 20;
+									bmpList[i].y -= Math.random()*20;
 								}
 								
 								
-							}else if(evt.target.y < bmpList[i].y){
+							}else if(evt.target.y + evt.target.getBounds().height < bmpList[i].y){
 								
 								if(bmpList[i].y > canvas.height - 20){
-									bmpList[i].y = evt.target.y - 50;
+									bmpList[i].y = evt.target.y - Math.random()*50;
 								}else{
-									bmpList[i].y += 20;
+									bmpList[i].y += Math.random()*20;
 								}
 							}
 						}
+						
+						
+						
 					}
 					
 				});
@@ -98,7 +101,7 @@
 					bitmap.regY = bitmap.image.height/2|0;
 					bitmap.mouseEnabled = true;
 					bmpList.push(bitmap);
-					console.log(bmpList[i].x);
+					console.log(bmpList[i].image.width);
 				}
 				
 				createjs.Ticker.addEventListener("tick", tick);
